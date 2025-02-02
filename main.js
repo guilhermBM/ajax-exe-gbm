@@ -10,18 +10,21 @@ document.addEventListener('DOMContentLoaded', function() {
     const linkContent = document.querySelector('#link')
 
     //recuperando os valores das informarções necessárias.
-
-    fetch('https://api.github.com/users/guilhermBM')
-        .then(function(resposta) {
-            return resposta.json();
-        })
-        .then(function(json) {
-            avatarContent.src = json.avatar_url;
-            nameContent.innerHTML = json.name;
-            usernameContent.innerHTML = json.login;
-            reposContent.innerHTML = json.public_repos;
-            followersContent.innerHTML = json.followers;
-            followingContent.innerHTML = json.following;
-            linkContent.href = json.html_url;
-        })
+    try{
+        fetch('https://api.github.com/users/guilhermBM')
+            .then(function(resposta) {
+                return resposta.json();
+            })
+            .then(function(json) {
+                avatarContent.src = json.avatar_url;
+                nameContent.innerHTML = json.name;
+                usernameContent.innerHTML = json.login;
+                reposContent.innerHTML = json.public_repos;
+                followersContent.innerHTML = json.followers;
+                followingContent.innerHTML = json.following;
+                linkContent.href = json.html_url;
+            })
+    } catch{
+        console.error('Erro ao carregar informações');
+    }
 })
